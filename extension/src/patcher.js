@@ -86,12 +86,22 @@ function patchI18nInit(src, ruT, ruR) {
 function patchHardcoded(src, hard) {
   const map = new Map();
   for (const [key, ru] of Object.entries(hard)) {
+    if (key.startsWith("?")) {
+      const [a, b] = ru.split("|");
+      if (b !== undefined) map.set(key, `?${JSON.stringify(a)}:${JSON.stringify(b)}`);
+      continue;
+    }
     const q = key.lastIndexOf('"', key.length - 2);
     map.set(key, key.slice(0, q) + JSON.stringify(ru));
   }
   if (!map.size) return { src, n: 0 };
   const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const re = new RegExp(`(?<=[,{])(?:${[...map.keys()].sort((a, b) => b.length - a.length).map(esc).join("|")})`, "g");
+  const alt = keys => keys.sort((a, b) => b.length - a.length).map(esc).join("|");
+  const props = [...map.keys()].filter(k => !k.startsWith("?")), terns = [...map.keys()].filter(k => k.startsWith("?"));
+  const parts = [];
+  if (props.length) parts.push(`(?<=[,{])(?:${alt(props)})`);
+  if (terns.length) parts.push(`(?<=")(?:${alt(terns)})`);
+  const re = new RegExp(parts.join("|"), "g");
   let n = 0;
   return { src: src.replace(re, m => { n++; return map.get(m); }), n };
 }

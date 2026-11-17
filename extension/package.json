@@ -2,7 +2,7 @@
   "name": "devin-desktop-ru",
   "displayName": "Devin Desktop — русский язык",
   "description": "Полная русификация Devin Desktop: VS Code, окна агентов, интерфейс Devin, меню и настройки.",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "publisher": "jasperBLCK",
   "license": "MIT",
   "repository": {

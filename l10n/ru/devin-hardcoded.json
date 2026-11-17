@@ -119,5 +119,7 @@
  "title:\"This will reset your onboarding flow, which may enable you to authenticate successfully.\"": "Это сбросит начальную настройку — возможно, после этого вход пройдёт успешно.",
  "title:\"Usage\"": "Использование",
  "title:\"Welcome to Devin\"": "Добро пожаловать в Devin",
- "tooltip:\"Actions\"": "Действия"
+ "tooltip:\"Actions\"": "Действия",
+ "?\"Signing in\\u2026\":\"Log in\"": "Вход…|Войти",
+ "?\"Signing in\\u2026\":\"Sign up\"": "Вход…|Зарегистрироваться"
 }

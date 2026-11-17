@@ -11,6 +11,8 @@
  "\"aria-label\":\"Past Conversations\"": "Past Conversations",
  "\"aria-label\":\"Reconnecting to remote authority\"": "Reconnecting to remote authority",
  "\"aria-label\":\"Start a New Conversation\"": "Start a New Conversation",
+ "?\"Signing in\\u2026\":\"Log in\"": "Signing in\\u2026|Log in",
+ "?\"Signing in\\u2026\":\"Sign up\"": "Signing in\\u2026|Sign up",
  "ariaLabel:\"Command input\"": "Command input",
  "children:\"ACU Cycle Limit\"": "ACU Cycle Limit",
  "children:\"After sending the IDE logs, reload your window to resume Devin use.\"": "After sending the IDE logs, reload your window to resume Devin use.",
