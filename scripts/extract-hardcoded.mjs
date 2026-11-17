@@ -3,7 +3,7 @@
 import fs from "fs"; import path from "path";
 const readOrig = f => fs.readFileSync(fs.existsSync(f + ".ru-orig") ? f + ".ru-orig" : f, "utf8");
 export const BUNDLES = ["out/vs/sessions/sessions.desktop.main.js", "out/vs/workbench/windsurf-chat-client/index.js"];
-export const TERN_RE = /children:\[?[\w$.]+===?"[^"\n]{0,40}"\?"([A-Z](?:[^"\\\n|]|\\u[0-9a-fA-F]{4}){1,120})":"([A-Z](?:[^"\\\n|]|\\u[0-9a-fA-F]{4}){1,120})"/g;
+export const TERN_RE = /children:\[?!?[\w$.]+(?:===?"[^"\n]{0,40}")?\?"([A-Z](?:[^"\\\n|]|\\u[0-9a-fA-F]{4}){1,120})":"([A-Z](?:[^"\\\n|]|\\u[0-9a-fA-F]{4}){1,120})"/g;
 export const PROP_RE = /([,{])((?:children|title|subtitle|placeholder|label|tooltip|description|"aria-label"|ariaLabel|confirmText|cancelText|heading|emptyText):\[?)"([A-Z][^"\\\n]{1,200})"/g;
 const APP = process.argv[2];
 if (!APP) { console.error("usage: extract-hardcoded.mjs <resources/app>"); process.exit(1); }

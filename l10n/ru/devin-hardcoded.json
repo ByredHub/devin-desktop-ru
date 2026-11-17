@@ -121,5 +121,9 @@
  "title:\"Welcome to Devin\"": "Добро пожаловать в Devin",
  "tooltip:\"Actions\"": "Действия",
  "?\"Signing in\\u2026\":\"Log in\"": "Вход…|Войти",
- "?\"Signing in\\u2026\":\"Sign up\"": "Вход…|Зарегистрироваться"
+ "?\"Signing in\\u2026\":\"Sign up\"": "Вход…|Зарегистрироваться",
+ "?\"Calculating top IDEs...\":\"Top IDEs\"": "Вычисляем топ IDE...|Топ IDE",
+ "?\"Edit Custom Limit\":\"Set Custom Limit\"": "Изменить свой лимит|Задать свой лимит",
+ "?\"Hide Error\":\"Show Error\"": "Скрыть ошибку|Показать ошибку",
+ "?\"Reconnecting\\u2026\":\"Reconnect\"": "Переподключение…|Переподключиться"
 }

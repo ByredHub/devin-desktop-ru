@@ -100,7 +100,7 @@ function patchHardcoded(src, hard) {
   const props = [...map.keys()].filter(k => !k.startsWith("?")), terns = [...map.keys()].filter(k => k.startsWith("?"));
   const parts = [];
   if (props.length) parts.push(`(?<=[,{])(?:${alt(props)})`);
-  if (terns.length) parts.push(`(?<=")(?:${alt(terns)})`);
+  if (terns.length) parts.push(`(?<=["\\w$])(?:${alt(terns)})`);
   const re = new RegExp(parts.join("|"), "g");
   let n = 0;
   return { src: src.replace(re, m => { n++; return map.get(m); }), n };
