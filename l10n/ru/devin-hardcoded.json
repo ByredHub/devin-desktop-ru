@@ -1,0 +1,8 @@
+{
+ "title:\"Customize\"": "Настройка",
+ "children:\"Choose a color theme\"": "Выберите цветовую тему",
+ "children:\"Next\"": "Далее",
+ "title:\"Welcome to Devin\"": "Добро пожаловать в Devin",
+ "subtitle:\"Sign in or create an account\"": "Войдите или создайте аккаунт",
+ "children:\"Having trouble? Enter your auth token manually\"": "Не получается? Введите токен авторизации вручную"
+}

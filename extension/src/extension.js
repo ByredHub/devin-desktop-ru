@@ -31,6 +31,7 @@ function setLocaleRu() {
 function apply(ctx) {
   const root = vscode.env.appRoot;
   patcher.applyWebapp(root, dataDir(ctx));
+  patcher.applyBundles(root, dataDir(ctx));
   patcher.applyManifests(root, manifests(ctx));
   return ctx.globalState.update(STATE_KEY, fingerprint(ctx));
 }
@@ -48,12 +49,13 @@ async function activate(ctx) {
     }),
     vscode.commands.registerCommand("devinDesktopRu.restore", async () => {
       patcher.restoreWebapp(vscode.env.appRoot);
+      patcher.restoreBundles(vscode.env.appRoot);
       patcher.restoreManifests(vscode.env.appRoot, manifests(ctx));
       await ctx.globalState.update(STATE_KEY, undefined);
       vscode.window.showInformationMessage("Оригинальные файлы Devin восстановлены. Язык интерфейса VS Code меняется командой «Configure Display Language».");
     })
   );
-  if (ctx.globalState.get(STATE_KEY) === fingerprint(ctx)) return;
+  if (ctx.globalState.get(STATE_KEY) === fingerprint(ctx) && patcher.isApplied(vscode.env.appRoot)) return;
   try {
     await apply(ctx);
     const localeChanged = setLocaleRu();

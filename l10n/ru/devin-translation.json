@@ -4,5 +4,9 @@
  "commandPalette.changeTheme": "Сменить тему",
  "commandPalette.darkMode": "Тёмная тема",
  "commandPalette.dialogLabel": "Палитра команд",
- "commandPalette.accessibilitySettings": "Настройки специальных возможностей"
+ "commandPalette.accessibilitySettings": "Настройки специальных возможностей",
+ "auth.logIn": "Войти",
+ "auth.signUp": "Зарегистрироваться",
+ "landing.logIn": "Войти",
+ "landing.signUp": "Зарегистрироваться"
 }

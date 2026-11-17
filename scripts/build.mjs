@@ -47,5 +47,8 @@ for (const [ns, file] of [["translation", "chunk-ru-devin-translation.js"], ["re
   fs.writeFileSync(path.join(EXT, "data", file), "export default " + JSON.stringify(nest(flat)) + ";\n");
 }
 fs.writeFileSync(path.join(EXT, "data/manifests.ru.json"), JSON.stringify(manifests));
+// окно агентов/Cascade: только переведённое (английский — fallback i18next) + захардкоженные строки
+for (const ns of ["translation", "review"]) fs.writeFileSync(path.join(EXT, `data/ru-${ns}.json`), JSON.stringify(nest(load(`devin-${ns}`))));
+fs.writeFileSync(path.join(EXT, "data/hardcoded.ru.json"), JSON.stringify(load("devin-hardcoded")));
 for (const f of ["LICENSE", "README.md"]) if (fs.existsSync(f)) fs.copyFileSync(f, path.join(EXT, f));
 console.log(`core +${added}, extension packs ${Object.keys(extTr).length}, manifests ${Object.keys(manifests).length}`);
