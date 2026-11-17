@@ -1,0 +1,7 @@
+node_modules/
+build/
+extension/translations/
+extension/data/
+extension/LICENSE
+extension/README.md
+*.vsix
