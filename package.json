@@ -6,6 +6,7 @@
     "extract": "node scripts/extract.mjs",
     "chunk": "node scripts/chunk.mjs 80000",
     "merge": "node scripts/merge.mjs",
+    "test": "node scripts/test-patch.mjs",
     "build": "node scripts/build.mjs && cd extension && npx -y @vscode/vsce@3 package --no-dependencies -o ../build/devin-desktop-ru.vsix"
   },
   "dependencies": { "acorn": "^8.19.0" }

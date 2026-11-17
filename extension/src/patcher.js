@@ -7,6 +7,8 @@
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
+const os = require("os");
+const cp = require("child_process");
 
 const MARK = "/*devin-desktop-ru*/";
 const RU_TR = "chunk-ru-devin-translation.js";
@@ -84,7 +86,7 @@ function patchI18nInit(src, ruT, ruR) {
 function patchHardcoded(src, hard) {
   const map = new Map();
   for (const [key, ru] of Object.entries(hard)) {
-    const q = key.indexOf('"');
+    const q = key.lastIndexOf('"', key.length - 2);
     map.set(key, key.slice(0, q) + JSON.stringify(ru));
   }
   if (!map.size) return { src, n: 0 };
@@ -92,6 +94,15 @@ function patchHardcoded(src, hard) {
   const re = new RegExp(`(?<=[,{])(?:${[...map.keys()].sort((a, b) => b.length - a.length).map(esc).join("|")})`, "g");
   let n = 0;
   return { src: src.replace(re, m => { n++; return map.get(m); }), n };
+}
+
+function parses(code) {
+  const tmp = path.join(os.tmpdir(), `devin-desktop-ru-${process.pid}-${Date.now()}.mjs`);
+  fs.writeFileSync(tmp, code);
+  try {
+    const r = cp.spawnSync(process.execPath, ["--check", tmp], { env: { ...process.env, ELECTRON_RUN_AS_NODE: "1" }, stdio: "ignore", timeout: 180000 });
+    return r.status === 0;
+  } finally { fs.rmSync(tmp, { force: true }); }
 }
 
 function applyBundles(appRoot, dataDir) {
@@ -107,6 +118,7 @@ function applyBundles(appRoot, dataDir) {
     if (withI18n === null) console.warn(`[devin-desktop-ru] i18next не найден в ${rel}`);
     else src = withI18n;
     src = patchHardcoded(src, hard).src;
+    if (!parses(src)) { console.warn(`[devin-desktop-ru] патч ломает ${rel}, пропускаю`); fs.writeFileSync(file, original(file, x => x.startsWith(MARK))); changed.push(rel); continue; }
     fs.writeFileSync(file, MARK + "\n" + src);
     changed.push(rel);
   }
